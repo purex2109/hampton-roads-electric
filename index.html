@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hampton Roads Electric Co. | Licensed Electricians Serving Hampton Roads, VA</title>
+  <meta name="description" content="Licensed and insured electrical contractors serving Hampton Roads, Virginia. Residential and commercial electrical services, panel upgrades, EV charger installation, and 24/7 emergency repairs.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B3A5C;
+      --navy-deep: #122842;
+      --gold: #E8A317;
+      --gold-hover: #D4930F;
+      --white: #F8F7F4;
+      --charcoal: #1C1C28;
+      --slate: #5E6B7F;
+      --card-bg: #EDF1F7;
+      --border: #D5DCE6;
+      --success: #2D8B4E;
+      --bg: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--charcoal);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(27, 58, 92, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--gold);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    .nav-brand {
+      font-family: Georgia, serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: #FFF; letter-spacing: 0.01em;
+    }
+    .nav-brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85); font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important; color: var(--navy-deep) !important;
+      padding: 0.5rem 1.25rem; border-radius: 6px; font-weight: 700 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-hover) !important; }
+    .nav-mobile { display: none; background: none; border: none; cursor: pointer; }
+    .nav-mobile svg { width: 28px; height: 28px; color: #FFF; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 8rem 1.5rem 5rem;
+      background: linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 60%, #234B73 100%);
+      color: #FFF;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 60px;
+      background: var(--bg);
+      clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 60%);
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .hero h1 { font-size: 2.75rem; margin-bottom: 1rem; }
+    .hero h1 span { color: var(--gold); }
+    .hero p { font-size: 1.125rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; max-width: 500px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold); color: var(--navy-deep);
+      padding: 0.875rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: 1rem;
+      transition: background 0.2s, transform 0.15s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold-hover); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: #FFF;
+      padding: 0.875rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(255,255,255,0.05); }
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-badge {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px; padding: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      text-align: center;
+    }
+    .hero-badge .bolt { font-size: 4rem; }
+    .hero-badge .tagline {
+      font-family: Georgia, serif; font-size: 1.25rem; font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-badge .sub { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      padding: 2.5rem 1.5rem;
+      background: var(--bg);
+    }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      text-align: center;
+    }
+    .trust-item .number {
+      font-family: Georgia, serif;
+      font-size: 2rem; font-weight: 700; color: var(--navy);
+    }
+    .trust-item .label {
+      font-size: 0.8rem; font-weight: 600; color: var(--slate);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.25rem;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+    .section-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 2rem; color: var(--navy); margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: var(--slate); max-width: 600px; margin-bottom: 3rem;
+    }
+    .section-alt { background: var(--white); }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .section-alt .service-card { background: #FFF; }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(27, 58, 92, 0.1);
+    }
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: var(--card-bg); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; font-size: 1.5rem;
+    }
+    .service-card h3 {
+      font-size: 1.1rem; color: var(--navy); margin-bottom: 0.5rem;
+    }
+    .service-card p {
+      font-size: 0.9rem; color: var(--slate); line-height: 1.5;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .about-text h2 { font-size: 2rem; color: var(--navy); margin-bottom: 1rem; }
+    .about-text p { color: var(--slate); margin-bottom: 1rem; }
+    .about-list { list-style: none; margin-top: 1.5rem; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--charcoal);
+    }
+    .about-list .check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #E6F4EC; color: var(--success);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px; font-size: 0.75rem; font-weight: 700;
+    }
+    .about-image {
+      background: var(--card-bg); border-radius: 16px;
+      padding: 3rem; text-align: center;
+      border: 1px solid var(--border);
+    }
+    .about-image .icon { font-size: 5rem; margin-bottom: 1rem; }
+    .about-image p {
+      font-family: Georgia, serif;
+      font-size: 1.1rem; color: var(--navy); font-weight: 600;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 5rem 1.5rem;
+      background: var(--navy-deep); color: #FFF;
+    }
+    .contact-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .contact-info h2 {
+      font-size: 2rem; margin-bottom: 1rem;
+    }
+    .contact-info h2 span { color: var(--gold); }
+    .contact-info p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+    .contact-detail {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem; color: rgba(255,255,255,0.85); font-size: 0.95rem;
+    }
+    .contact-detail .icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(232, 163, 23, 0.15); color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-form {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 2rem;
+    }
+    .contact-form h3 {
+      font-size: 1.25rem; margin-bottom: 1.5rem; color: #FFF;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem; font-weight: 600;
+      color: rgba(255,255,255,0.7); margin-bottom: 0.35rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px; color: #FFF; font-size: 0.95rem;
+      font-family: inherit; transition: border-color 0.2s;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--gold);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group select option { background: var(--navy-deep); color: #FFF; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      width: 100%; padding: 0.875rem;
+      background: var(--gold); color: var(--navy-deep);
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--gold-hover); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-status {
+      margin-top: 0.75rem; font-size: 0.875rem; text-align: center;
+      min-height: 1.25rem;
+    }
+    .form-status.success { color: #6EE7A0; }
+    .form-status.error { color: #FCA5A5; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2rem 1.5rem;
+      background: #0E1F31; color: rgba(255,255,255,0.5);
+      text-align: center; font-size: 0.8rem;
+    }
+    .footer a { color: rgba(255,255,255,0.7); }
+    .footer a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { display: none; }
+      .hero h1 { font-size: 2.25rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image { order: -1; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-mobile { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">Hampton Roads <span>Electric Co.</span></div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Get a Free Quote</a>
+      </div>
+      <button class="nav-mobile" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" aria-label="Menu">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Trusted Electricians in <span>Hampton Roads</span></h1>
+        <p>Licensed, insured, and serving the Virginia coast since 2012. From panel upgrades to EV charger installations, we handle it all with honest pricing and quality craftsmanship.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Get a Free Estimate</a>
+          <a href="tel:+17575551234" class="btn-outline">Call (757) 555-1234</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-badge">
+          <div class="bolt">&#9889;</div>
+          <div class="tagline">Powering Hampton Roads</div>
+          <div class="sub">Virginia Beach &bull; Norfolk &bull; Chesapeake &bull; Newport News</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="number">12+</div>
+        <div class="label">Years in Business</div>
+      </div>
+      <div class="trust-item">
+        <div class="number">2,400+</div>
+        <div class="label">Jobs Completed</div>
+      </div>
+      <div class="trust-item">
+        <div class="number">4.9&#9733;</div>
+        <div class="label">Google Rating</div>
+      </div>
+      <div class="trust-item">
+        <div class="number">100%</div>
+        <div class="label">Licensed & Insured</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section-alt" id="services">
+    <div class="section-inner">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Electrical Services for Home & Business</h2>
+      <p class="section-subtitle">Whether you need a single outlet replaced or a full commercial buildout, our master electricians deliver safe, code-compliant work every time.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">&#127968;</div>
+          <h3>Residential Electrical</h3>
+          <p>Wiring, outlets, switches, lighting, ceiling fans, and whole-home rewiring for older properties.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#9889;</div>
+          <h3>Panel Upgrades</h3>
+          <p>Upgrade your electrical panel to handle modern loads safely. 100-amp to 200-amp and 400-amp upgrades available.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128663;</div>
+          <h3>EV Charger Installation</h3>
+          <p>Level 2 charger installations for Tesla, Ford, Rivian, and all electric vehicles. Same-week scheduling.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#127981;</div>
+          <h3>Commercial Electrical</h3>
+          <p>Office buildouts, retail lighting, code compliance inspections, and tenant improvement electrical work.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128161;</div>
+          <h3>Lighting Design</h3>
+          <p>Recessed lighting, landscape lighting, LED retrofits, and smart lighting systems for any space.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128680;</div>
+          <h3>Emergency Repairs</h3>
+          <p>24/7 emergency electrical service for outages, sparking outlets, breaker failures, and storm damage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">About Us</div>
+          <h2>Honest Work at Fair Prices</h2>
+          <p>Hampton Roads Electric Co. was founded in 2012 with a simple mission: deliver expert electrical work without the runaround. No hidden fees, no upselling, no surprises on the invoice.</p>
+          <p>Every electrician on our team is a licensed journeyman or master electrician. We pull permits, pass inspections the first time, and stand behind our work with a 2-year warranty.</p>
+          <ul class="about-list">
+            <li><span class="check">&#10003;</span> Virginia Class A Licensed Contractor</li>
+            <li><span class="check">&#10003;</span> $2M General Liability Insurance</li>
+            <li><span class="check">&#10003;</span> Background-checked, drug-tested crews</li>
+            <li><span class="check">&#10003;</span> Free written estimates, no obligation</li>
+            <li><span class="check">&#10003;</span> 2-year workmanship warranty</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <div class="icon">&#128736;&#65039;</div>
+          <p>Serving Virginia Beach, Norfolk, Chesapeake, Newport News, Hampton, Suffolk & surrounding areas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <h2>Get Your <span>Free Estimate</span></h2>
+        <p>Tell us about your project and we'll get back to you within the hour during business hours. Emergency? Call us directly.</p>
+        <div class="contact-detail">
+          <div class="icon">&#128222;</div>
+          <div><strong>(757) 555-1234</strong><br><span style="font-size:0.8rem;opacity:0.6">Mon-Sat, 7am-6pm</span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">&#128231;</div>
+          <div>info@hamptonroadselectric.com</div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">&#128205;</div>
+          <div>Serving all of Hampton Roads, VA</div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Request a Quote</h3>
+        <form id="quoteForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(757) 555-0000" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com">
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" name="service">
+              <option value="">Select a service...</option>
+              <option value="Residential Electrical">Residential Electrical</option>
+              <option value="Panel Upgrade">Panel Upgrade</option>
+              <option value="EV Charger Installation">EV Charger Installation</option>
+              <option value="Commercial Electrical">Commercial Electrical</option>
+              <option value="Lighting">Lighting Design</option>
+              <option value="Emergency Repair">Emergency Repair</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submitBtn">Send Request</button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Hampton Roads Electric Co. &mdash; Virginia Class A Licensed Contractor &mdash; <a href="tel:+17575551234">(757) 555-1234</a></p>
+  </footer>
+
+  <script>
+    // ============================================================
+    // CONFIGURATION — Replace with real values from HelixResponse
+    // ============================================================
+    const HELIX_API_KEY = "PASTE_YOUR_API_KEY_HERE";
+    const HELIX_CONTACT_URL = "https://www.helixresponse.com/api/widget/contact-form";
+
+    async function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById("submitBtn");
+      const status = document.getElementById("formStatus");
+
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+      status.textContent = "";
+      status.className = "form-status";
+
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const service = document.getElementById("service").value;
+      const message = document.getElementById("message").value.trim();
+
+      const fullMessage = service
+        ? `[${service}] ${message}`
+        : message;
+
+      try {
+        const res = await fetch(HELIX_CONTACT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            apiKey: HELIX_API_KEY,
+            name,
+            phone,
+            email,
+            message: fullMessage,
+          }),
+        });
+
+        if (!res.ok) throw new Error("Request failed");
+
+        status.textContent = "Thank you! We'll be in touch shortly.";
+        status.className = "form-status success";
+        document.getElementById("quoteForm").reset();
+      } catch (err) {
+        status.textContent = "Something went wrong. Please call us directly.";
+        status.className = "form-status error";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Send Request";
+      }
+    }
+  </script>
+
+</body>
+</html>
